@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anderson Robinson | IT & Web Development Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header and Navigation -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" aria-label="Anderson Robinson Home">AR<span>.dev</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                ☰
+            </button>
+            <nav id="navMenu">
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><button id="themeToggle" class="theme-btn" aria-label="Toggle dark/light mode">🌙</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <h1>Hi, I'm <span class="highlight">Anderson Robinson</span></h1>
+                <p class="subtitle">IT Specialist & Front-End Web Developer</p>
+                <p class="description">Building accessible, responsive, and performance-focused digital solutions.</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80" 
+                     alt="Workspace setup with a modern laptop showing web development code" 
+                     class="profile-img">
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section about" id="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>I specialize in developing modern web applications with semantic HTML5, responsive CSS3 architectures, and modular JavaScript. My focus is on delivering seamless user experiences and writing maintainable code.</p>
+                        <p>When not programming, I focus on PC hardware configuration, performance tuning, and exploring cloud technologies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section skills" id="skills">
+            <div class="container">
+                <h2 class="section-title">Core Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>Front-End</h3>
+                        <p>HTML5, Semantic Markup, CSS3, Flexbox, CSS Grid, Responsive Design</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Programming</h3>
+                        <p>JavaScript (ES6+), DOM Manipulation, Asynchronous Programming, C#</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Tools & Workflow</h3>
+                        <p>Git, GitHub, VS Code, GitHub Pages, Microsoft Copilot</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section (Interactive Filter) -->
+        <section class="section projects" id="projects">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                
+                <!-- Interactive Filter Controls -->
+                <div class="filter-controls" role="group" aria-label="Filter Projects">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="web">Web Development</button>
+                    <button class="filter-btn" data-filter="app">Applications</button>
+                </div>
+
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Project 1 -->
+                    <article class="project-card" data-category="web">
+                        <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=600&q=80" 
+                             alt="Responsive portfolio dashboard mockup on computer screen" 
+                             class="project-img">
+                        <div class="project-info">
+                            <h3>Responsive Portfolio Website</h3>
+                            <p>A fully accessible, mobile-first personal portfolio site built using Semantic HTML, custom CSS variables, and modern JavaScript.</p>
+                            <span class="tag">HTML / CSS / JS</span>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article class="project-card" data-category="app">
+                        <img src="https://images.unsplash.com/photo-1507842229458-577749e472e3?auto=format&fit=crop&w=600&q=80" 
+                             alt="Library books aligned neatly on shelves" 
+                             class="project-img">
+                        <div class="project-info">
+                            <h3>Library Management System</h3>
+                            <p>An application featuring catalog search, checkout tracking, and borrow-limit enforcement using object-oriented principles.</p>
+                            <span class="tag">C# / LINQ</span>
+                        </div>
+                    </article>
+
+                    <!-- Project 3 -->
+                    <article class="project-card" data-category="web">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" 
+                             alt="Analytics and interactive charts displayed on an office desk monitor" 
+                             class="project-img">
+                        <div class="project-info">
+                            <h3>Interactive Data Visualizer</h3>
+                            <p>Dynamic DOM-rendered metrics dashboard consuming JSON payloads with asynchronous fetch requests.</p>
+                            <span class="tag">JavaScript / JSON</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section contact" id="contact">
+            <div class="container">
+                <h2 class="section-title">Contact</h2>
+                <form id="contactForm" class="contact-form" novalidate>
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Jane Doe">
+                        <span class="error-msg" id="nameError" aria-live="polite"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="jane@example.com">
+                        <span class="error-msg" id="emailError" aria-live="polite"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" required placeholder="Write your message here..."></textarea>
+                        <span class="error-msg" id="messageError" aria-live="polite"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <p id="formFeedback" class="form-feedback" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Anderson Robinson. Built with Semantic HTML, CSS Grid/Flexbox, and Vanilla JavaScript.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
