@@ -1,107 +1,45 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // -------------------------------------------------------------------------
-    // 1. Mobile Navigation Toggle
-    // -------------------------------------------------------------------------
-    const navToggle = document.getElementById("navToggle");
-    const navMenu = document.getElementById("navMenu").querySelector(".nav-links");
+function compute() {
+    var principalElement = document.getElementById("principal");
+    var rateElement = document.getElementById("rate");
+    var yearsElement = document.getElementById("years");
+    var resultElement = document.getElementById("result");
 
-    if (navToggle && navMenu) {
-        navToggle.addEventListener("click", () => {
-            const isOpen = navMenu.classList.toggle("open");
-            navToggle.setAttribute("aria-expanded", isOpen.toString());
-        });
+    // Prevent TypeErrors by ensuring HTML elements actually exist before pulling values
+    if (!principalElement || !rateElement || !yearsElement || !resultElement) {
+        console.error("One or more elements could not be found.");
+        return;
     }
 
-    // -------------------------------------------------------------------------
-    // 2. Light / Dark Mode Toggle
-    // -------------------------------------------------------------------------
-    const themeBtn = document.getElementById("themeToggle");
-    const currentTheme = localStorage.getItem("portfolio-theme") || "light";
+    // Convert string input values properly to numbers before use in calculations
+    var principal = parseFloat(principalElement.value);
+    var rate = parseFloat(rateElement.value);
+    var years = parseInt(yearsElement.value);
 
-    if (currentTheme === "dark") {
-        document.documentElement.setAttribute("data-theme", "dark");
-        themeBtn.textContent = "☀️";
+    // Form Validation
+    if (isNaN(principal) || principal <= 0) {
+        alert("Enter a positive number");
+        principalElement.focus();
+        return;
     }
 
-    themeBtn.addEventListener("click", () => {
-        const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-        if (isDark) {
-            document.documentElement.removeAttribute("data-theme");
-            themeBtn.textContent = "🌙";
-            localStorage.setItem("portfolio-theme", "light");
-        } else {
-            document.documentElement.setAttribute("data-theme", "dark");
-            themeBtn.textContent = "☀️";
-            localStorage.setItem("portfolio-theme", "dark");
-        }
-    });
+    // Calculate the interest and the future year
+    var interest = (principal * years * rate) / 100;
+    var currentYear = new Date().getFullYear();
+    var futureYear = currentYear + years;
 
-    // -------------------------------------------------------------------------
-    // 3. Dynamic Project Filtering (DOM Manipulation)
-    // -------------------------------------------------------------------------
-    const filterButtons = document.querySelectorAll(".filter-btn");
-    const projectCards = document.querySelectorAll(".project-card");
+    // Display the final result
+    resultElement.innerHTML = "If you deposit <mark>" + principal + "</mark>,<br/>" +
+        "at an interest rate of <mark>" + rate + "%</mark>.<br/>" +
+        "You will receive an amount of <mark>" + interest + "</mark>,<br/>" +
+        "in the year <mark>" + futureYear + "</mark>";
+}
 
-    filterButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            filterButtons.forEach(btn => btn.classList.remove("active"));
-            button.classList.add("active");
-
-            const filterValue = button.getAttribute("data-filter");
-
-            projectCards.forEach(card => {
-                const category = card.getAttribute("data-category");
-                if (filterValue === "all" || category === filterValue) {
-                    card.style.display = "block";
-                    card.style.opacity = "1";
-                } else {
-                    card.style.display = "none";
-                    card.style.opacity = "0";
-                }
-            });
-        });
-    });
-
-    // -------------------------------------------------------------------------
-    // 4. Contact Form Validation
-    // -------------------------------------------------------------------------
-    const form = document.getElementById("contactForm");
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
-    const messageInput = document.getElementById("message");
-    const feedback = document.getElementById("formFeedback");
-
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        let isValid = true;
-
-        // Reset error messages
-        document.querySelectorAll(".error-msg").forEach(el => el.textContent = "");
-        feedback.textContent = "";
-
-        // Name verification
-        if (nameInput.value.trim() === "") {
-            document.getElementById("nameError").textContent = "Please enter your name.";
-            isValid = false;
-        }
-
-        // Email regex check
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(emailInput.value.trim())) {
-            document.getElementById("emailError").textContent = "Please provide a valid email address.";
-            isValid = false;
-        }
-
-        // Message verification
-        if (messageInput.value.trim().length < 5) {
-            document.getElementById("messageError").textContent = "Message must be at least 5 characters long.";
-            isValid = false;
-        }
-
-        if (isValid) {
-            feedback.className = "form-feedback success";
-            feedback.textContent = "Thank you! Your message has been sent successfully.";
-            form.reset();
-        }
-    });
-});
+function updateRate() {
+    var rateElement = document.getElementById("rate");
+    var rateValElement = document.getElementById("rate_val");
+    
+    // Prevent TypeErrors by ensuring elements exist
+    if (rateElement && rateValElement) {
+        rateValElement.innerText = rateElement.value + "%";
+    }
+}
